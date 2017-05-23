@@ -28,6 +28,8 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+
+    window.dancers.push(dancer);
   });
 
   $('#addfadeDancerButton').on('click', function(event) {
@@ -65,6 +67,9 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+
+    window.dancers.push(dancer);
+
   });
 
   $('.addSmileyDancerButton').on('click', function(event) {
@@ -76,6 +81,15 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+
+    window.dancers.push(dancer);
+
+  });
+
+  $('.lineupButton').on('click', function(event) {
+    for (var i=0; i<window.dancers.length; i++) {
+      window.dancers[i].lineUp();
+    }
   });
 
 });

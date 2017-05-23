@@ -4,6 +4,7 @@ var makesoldierDancer = function(top, left, timeBetweenSteps) {
   // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
   // so we must keep a copy of the old version of this function
   this.timeBetweenSteps = timeBetweenSteps;
+  //this.originalTimeBetweenSteps = timeBetweenSteps;
   //this.oldStep = makeBlinkyDancer.prototype.step;
   //this.step();
   //this.$node.text('S');
@@ -17,7 +18,9 @@ makesoldierDancer.prototype.step = function() {
   // call the old version of step at the beginning of any call to this new version of step
   //debugger;
   //this.oldStep();
-  setTimeout(this.step.bind(this), this.timeBetweenSteps);
+  if (!this.party) {
+    setTimeout(this.step.bind(this), this.timeBetweenSteps);
+
   /*setTimeout(function() {
     this.step.call(this);
   }, this.timeBetweenSteps);
@@ -28,7 +31,16 @@ makesoldierDancer.prototype.step = function() {
   // other effects you can use on a jQuery-wrapped html tag.
   //debugger;
 
-  this.setPosition($("body").height() * Math.random(), $("body").width() * Math.random());
+    this.setPosition($("body").height() * Math.random(), $("body").width() * Math.random());
+  } else {
+    this.$node.clearQueue();
+    this.$node.animate({
+      top: this.styleSettings.top,
+      left: '80%'
+    }, (Math.random() * 1000) + 500);
+
+    setTimeout(this.step.bind(this), 500);
+  }
 
   if(this.checkBoss()){
     this.$node.css({
@@ -72,3 +84,19 @@ makesoldierDancer.prototype.checkBoss = function() {
 
   return false;
 };
+
+makesoldierDancer.prototype.lineUp = function() {
+  this.party = true;
+};
+
+/*
+makesoldierDancer.prototype.party = function() {
+  this.$node.clearQueue();
+  this.$node.animate({
+    top: this.styleSettings.top,
+    left: '80%'
+  }, (Math.random() * 1000) + 500);
+
+  setTimeout(this.lineUp.bind(this), 500);
+};
+*/
