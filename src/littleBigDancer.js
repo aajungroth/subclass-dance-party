@@ -7,6 +7,7 @@ var makeLittleBigDancer = function(top, left, timeBetweenSteps) {
   this.small = true;
   this.height = this.$node.height();
   this.width = this.$node.width();
+  this.sizeDifference = 10;
 };
 
 makeLittleBigDancer.prototype = Object.create(makeDancer.prototype);
@@ -17,15 +18,16 @@ makeLittleBigDancer.prototype.step = function() {
   setTimeout(this.step.bind(this), this.timeBetweenSteps);
   //updates the properties of the dancer based on its current size
   if (this.small === true) {
-    this.height += 5;
-    this.width += 5;
+    this.height += this.sizeDifference;
+    this.width += this.sizeDifference;
     this.small = false;
   } else {
-    this.height -= 5;
-    this.width -= 5;
+    this.height -= this.sizeDifference;
+    this.width -= this.sizeDifference;
     this.small = true;
   }
   //height() and width() together change the size of the node
-  this.$node.height(this.height);
-  this.$node.width(this.width);
+  //this.$node.height(this.height);
+  //this.$node.width(this.width);
+  this.$node.animate({height: this.height, width: this.width}, 'fast');
 };

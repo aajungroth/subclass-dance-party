@@ -12,16 +12,10 @@ describe('littleBigDancer', function() {
     expect(littleBigDancer.$node).to.be.an.instanceof(jQuery);
   });
 
-  it('should have a step function that changes its height', function() {
-    sinon.spy(littleBigDancer.$node, 'height');
+  it('should have a step function that animates changing size', function() {
+    sinon.spy(littleBigDancer.$node, 'animate');
     littleBigDancer.step();
-    expect(littleBigDancer.$node.height.called).to.be.true;
-  });
-
-  it('should have a step function that changes its width', function() {
-    sinon.spy(littleBigDancer.$node, 'width');
-    littleBigDancer.step();
-    expect(littleBigDancer.$node.width.called).to.be.true;
+    expect(littleBigDancer.$node.animate.called).to.be.true;
   });
 
   describe('dance', function() {

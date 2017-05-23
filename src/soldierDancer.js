@@ -1,4 +1,4 @@
-var makefadeDancer = function(top, left, timeBetweenSteps) {
+var makesoldierDancer = function(top, left, timeBetweenSteps) {
   makeDancer.call(this, top, left, timeBetweenSteps);
 
   // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
@@ -6,17 +6,14 @@ var makefadeDancer = function(top, left, timeBetweenSteps) {
   this.timeBetweenSteps = timeBetweenSteps;
   //this.oldStep = makeBlinkyDancer.prototype.step;
   //this.step();
-  this.$node.css({
-    'border-color': 'blue'
-  });
-
-  this.$node.text('BOSS');
+  //this.$node.text('S');
+  this.currentBoss = null;
 };
 
-makefadeDancer.prototype = Object.create(makeDancer.prototype);
-makefadeDancer.prototype.constructor = makefadeDancer;
+makesoldierDancer.prototype = Object.create(makeDancer.prototype);
+makesoldierDancer.prototype.constructor = makesoldierDancer;
 
-makefadeDancer.prototype.step = function() {
+makesoldierDancer.prototype.step = function() {
   // call the old version of step at the beginning of any call to this new version of step
   //debugger;
   //this.oldStep();
@@ -30,18 +27,26 @@ makefadeDancer.prototype.step = function() {
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
   //debugger;
-  this.$node.animate({
-    borderWidth: 100,
-    borderRadius: 100
-  }, 500);
 
   this.setPosition($("body").height() * Math.random(), $("body").width() * Math.random());
+
+  if(this.checkBoss()){
+    this.$node.css({
+      'border-color': 'red'
+    });
+
+    this.$node.text(this.currentBoss.styleSettings.left + ':' + this.currentBoss.styleSettings.top);
+
+  } else {
+    this.$node.css({
+      'border-color': 'yellow'
+    });
+  }
+
 };
 
-makefadeDancer.prototype.setPosition = function(top, left) {
-  // Use css top and left properties to position our <span> tag
-  // where it belongs on the page. See http://api.jquery.com/css/
-  //
+makesoldierDancer.prototype.setPosition = function(top, left) {
+
   this.styleSettings.top = top;
   this.styleSettings.left = left;
 
@@ -49,4 +54,21 @@ makefadeDancer.prototype.setPosition = function(top, left) {
     top: this.styleSettings.top,
     left: this.styleSettings.left
   }, (Math.random() * 2000) + 500);
+};
+
+makesoldierDancer.prototype.shootBoss = function() {
+  //debugger;
+  return false;
+};
+
+makesoldierDancer.prototype.checkBoss = function() {
+  //debugger;
+  for(var i=0; i<window.dancers.length; i++ ){
+    if(window.dancers[i].constructor.name === "makefadeDancer"){
+      this.currentBoss = window.dancers[i];
+      return true;
+    }
+  }
+
+  return false;
 };

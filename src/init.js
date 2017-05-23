@@ -31,13 +31,6 @@ $(document).ready(function() {
   });
 
   $('#addfadeDancerButton').on('click', function(event) {
-    // debugger;
-    // var dancerMakerFunctionName = $(this).data('data-fade-dancer');
-    //
-    // // get the maker function for the kind of dancer we're supposed to make
-    // var dancerMakerFunction = window[dancerMakerFunctionName];
-
-    // make a dancer with a random position
 
     var dancer = new makefadeDancer(
       $("body").height() * Math.random(),
@@ -45,6 +38,22 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+
+    window.dancers.push(dancer);
+
+  });
+
+  $('#addsoldierDancerButton').on('click', function(event) {
+
+    var dancer = new makesoldierDancer(
+      $("body").height() * Math.random(),
+      $("body").width() * Math.random(),
+      Math.random() * 1000
+    );
+    $('body').append(dancer.$node);
+
+    window.dancers.push(dancer);
+
   });
 
   $('.addLittleBigDancerButton').on('click', function(event) {
@@ -57,4 +66,16 @@ $(document).ready(function() {
     );
     $('body').append(dancer.$node);
   });
+
+  $('.addSmileyDancerButton').on('click', function(event) {
+  // make a dancer with a random position
+
+    var dancer = new makeSmileyDancer(
+      $("body").height() * Math.random(),
+      $("body").width() * Math.random(),
+      Math.random() * 1000
+    );
+    $('body').append(dancer.$node);
+  });
+
 });
