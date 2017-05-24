@@ -13,6 +13,8 @@ var makefadeDancer = function(top, left, timeBetweenSteps) {
   });
 
   this.$node.text('BOSS');
+
+  $("body").css({"background-image": "url(\"http://rs651.pbsrc.com/albums/uu236/416o/explosion.gif~c200\")"});
 };
 
 makefadeDancer.prototype = Object.create(makeDancer.prototype);

@@ -35,7 +35,9 @@ makesoldierDancer.prototype.step = function() {
 
   if(this.checkBoss()){
     this.$node.css({
-      'border-color': 'red'
+      'border-color': 'red',
+      borderWidth: 50,
+      borderRadius: 50
     });
 
     // this.$node.text(window.dancers[this.bossIndex].styleSettings.left + ':' + window.dancers[this.bossIndex].styleSettings.top);
@@ -45,8 +47,15 @@ makesoldierDancer.prototype.step = function() {
 
   } else {
     this.$node.css({
-      'border-color': 'green'
+      'border-color': 'green',
+      borderWidth: 50,
+      borderRadius: 50
     });
+    $("body").css({
+      "background-image": "url(\"http://bestanimations.com/Music/MirrorBalls/animated-purple-disco-ball3.gif\")",
+      "background-repeat": "no-repeat",
+      "background-position": "center center",
+      "background-size": "100% 100%"});
   }
 
 };

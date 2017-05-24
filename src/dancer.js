@@ -10,7 +10,7 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   this.step();
   this.setPosition(top, left);
   this.party = false;
-  this.life = 100;
+  this.life = 50;
   this.currentBoss = null;
   this.bossIndex = null;
 };
