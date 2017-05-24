@@ -10,6 +10,9 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   this.step();
   this.setPosition(top, left);
   this.party = false;
+  this.life = 100;
+  this.currentBoss = null;
+  this.bossIndex = null;
 };
 
 makeDancer.prototype.step = function() {
@@ -34,8 +37,15 @@ makeDancer.prototype.setPosition = function(top, left) {
 //dancer.setPosition(top, left);
 
 makeDancer.prototype.lineUp = function() {
+  this.party = true;
+/*
   this.$node.animate({
     top: 100,
     left: this.styleSettings.left
   }, (Math.random() * 2000) + 500);
+*/
+};
+
+makeDancer.prototype.charge = function() {
+  this.party = false;
 };

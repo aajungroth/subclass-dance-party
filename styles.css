@@ -8,6 +8,8 @@ body{
 }
 body, a:link, a:visited, a:active{
   color: lightblue;
+  font-weight: 700;
+	text-shadow: none;
 }
 .title, .addDancerButton{
   padding:5px 12px;
@@ -21,6 +23,12 @@ body, a:link, a:visited, a:active{
   background-color: #777;
 }
 .dancer{
+  border:10px solid red;
+  border-radius:10px;
+  position:absolute;
+}
+
+.bullet{
   border:10px solid red;
   border-radius:10px;
   position:absolute;

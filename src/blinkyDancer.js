@@ -27,3 +27,12 @@ makeBlinkyDancer.prototype.step = function() {
   //debugger;
   this.$node.toggle();
 };
+
+makeDancer.prototype.lineUp = function() {
+  this.party = true;
+
+  this.$node.animate({
+    top: 100,
+    left: this.styleSettings.left
+  }, (Math.random() * 2000) + 500);
+};

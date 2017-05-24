@@ -45,6 +45,13 @@ $(document).ready(function() {
 
   });
 
+  $('#clearDancerButton').on('click', function(event) {
+
+    for (var i=0; i<windows.dancers.length; i++){
+
+    }
+  });
+
   $('#addsoldierDancerButton').on('click', function(event) {
 
     var dancer = new makesoldierDancer(
@@ -90,6 +97,16 @@ $(document).ready(function() {
     for (var i=0; i<window.dancers.length; i++) {
       window.dancers[i].lineUp();
     }
+  });
+
+  $('.chargeButton').on('click', function(event) {
+    for (var i=0; i<window.dancers.length; i++) {
+      window.dancers[i].charge();
+    }
+  });
+
+  $("body").on('mouseover', '.smiley', function(event) {
+    $(this).remove();
   });
 
 });

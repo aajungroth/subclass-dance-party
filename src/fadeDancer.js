@@ -7,7 +7,9 @@ var makefadeDancer = function(top, left, timeBetweenSteps) {
   //this.oldStep = makeBlinkyDancer.prototype.step;
   //this.step();
   this.$node.css({
-    'border-color': 'blue'
+    'border-color': 'blue',
+    borderWidth: 100,
+    borderRadius: 100
   });
 
   this.$node.text('BOSS');
@@ -20,7 +22,9 @@ makefadeDancer.prototype.step = function() {
   // call the old version of step at the beginning of any call to this new version of step
   //debugger;
   //this.oldStep();
-  if (!this.party) {
+  if(this.life === 0) {
+    this.$node.remove();
+  } else if (!this.party) {
     setTimeout(this.step.bind(this), this.timeBetweenSteps);
   }
   /*setTimeout(function() {
@@ -32,10 +36,6 @@ makefadeDancer.prototype.step = function() {
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
   //debugger;
-  this.$node.animate({
-    borderWidth: 100,
-    borderRadius: 100
-  }, 500);
 
   this.setPosition($("body").height() * Math.random(), $("body").width() * Math.random());
 };
@@ -50,5 +50,5 @@ makefadeDancer.prototype.setPosition = function(top, left) {
   this.$node.animate({
     top: this.styleSettings.top,
     left: this.styleSettings.left
-  }, (Math.random() * 2000) + 500);
+  }, (Math.random() * 6000) + 5000);
 };
